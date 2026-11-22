@@ -1,0 +1,24 @@
+{
+  "name": "bank-accounts-cdc",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "tasks.max": "1",
+    "database.hostname": "source-db",
+    "database.port": "5432",
+    "database.user": "demo",
+    "database.password": "demo_password",
+    "database.dbname": "bank",
+    "topic.prefix": "bank",
+    "plugin.name": "pgoutput",
+    "slot.name": "bank_accounts_slot",
+    "publication.name": "bank_accounts_pub",
+    "publication.autocreate.mode": "filtered",
+    "table.include.list": "public.accounts",
+    "snapshot.mode": "initial",
+    "tombstones.on.delete": "false",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false"
+  }
+}
